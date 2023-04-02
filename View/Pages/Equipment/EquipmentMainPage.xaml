@@ -1,0 +1,40 @@
+﻿<Page x:Class="DrillApp.View.Pages.Equipment.EquipmentMainPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:DrillApp.View.Pages.Equipment"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Loaded="Page_Loaded"
+      Title="EquipmentMainPage">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.33*"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid>
+            <StackPanel Orientation="Horizontal">
+                <Button Click="AddClick" Content="Создать" />
+                <Button Click="EditClick" Content="Изменить" />
+                
+                <Button Width="auto" Click="TypeClick" Content="Тип оборудования"  />
+
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Row="1">
+            <DataGrid AutoGenerateColumns="False" Name="DGrid" IsReadOnly="True">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Идентификационный номер" Binding="{Binding Код}" />
+                    <DataGridTextColumn Header="Наименование" Binding="{Binding ТипОборудования.Имя}" />
+                    <DataGridTextColumn Header="Дата приема" Binding="{Binding ДатаПриема}" />
+                    <DataGridTextColumn Header="Списан" Binding="{Binding списан}" />
+                    <DataGridTextColumn Header="Ремонтируется" Binding="{Binding ремонт}" />
+
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+
+    </Grid>
+</Page>

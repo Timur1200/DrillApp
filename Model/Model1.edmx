@@ -1,0 +1,403 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Хранилище DrillMasterModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Заявка">
+          <Key>
+            <PropertyRef Name="Код" />
+          </Key>
+          <Property Name="Код" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="КодСотрудника" Type="int" Nullable="false" />
+          <Property Name="КодОборудования" Type="int" Nullable="false" />
+          <Property Name="ОписаниеПоломки" Type="nvarchar(max)" />
+          <Property Name="Дата" Type="datetime" Nullable="false" />
+          <Property Name="ДатаДиагностики" Type="datetime" />
+          <Property Name="ИтогиДиагностики" Type="nvarchar(max)" />
+          <Property Name="ОписаниеРемонта" Type="nvarchar(max)" />
+          <Property Name="ДатаРемонта" Type="datetime" />
+          <Property Name="ДатаОтчета" Type="datetime" />
+          <Property Name="Отчет" Type="nvarchar(max)" />
+          <Property Name="Статус" Type="int" />
+        </EntityType>
+        <EntityType Name="Оборудование">
+          <Key>
+            <PropertyRef Name="Код" />
+          </Key>
+          <Property Name="Код" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="КодТипаОборудования" Type="int" />
+          <Property Name="ДатаПриема" Type="datetime" Nullable="false" />
+          <Property Name="Списан" Type="bit" Nullable="false" />
+          <Property Name="Ремонтируется" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Роль">
+          <Key>
+            <PropertyRef Name="Код" />
+          </Key>
+          <Property Name="Код" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Имя" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Сотрудник">
+          <Key>
+            <PropertyRef Name="Код" />
+          </Key>
+          <Property Name="Код" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="РольКод" Type="int" Nullable="false" />
+          <Property Name="Фио" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Логин" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Пароль" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Адрес" Type="nvarchar" MaxLength="50" />
+          <Property Name="ДатаРождения" Type="datetime" />
+          <Property Name="Уволен" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ТипОборудования">
+          <Key>
+            <PropertyRef Name="Код" />
+          </Key>
+          <Property Name="Код" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Имя" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Масса" Type="float" Nullable="false" />
+          <Property Name="Частота" Type="int" Nullable="false" />
+          <Property Name="ЧислоДвигателей" Type="int" Nullable="false" />
+          <Property Name="УсловнаяГлубина" Type="float" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Заявка_Оборудование">
+          <End Role="Оборудование" Type="Self.Оборудование" Multiplicity="1" />
+          <End Role="Заявка" Type="Self.Заявка" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Оборудование">
+              <PropertyRef Name="Код" />
+            </Principal>
+            <Dependent Role="Заявка">
+              <PropertyRef Name="КодОборудования" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Заявка_Сотрудник">
+          <End Role="Сотрудник" Type="Self.Сотрудник" Multiplicity="1" />
+          <End Role="Заявка" Type="Self.Заявка" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Сотрудник">
+              <PropertyRef Name="Код" />
+            </Principal>
+            <Dependent Role="Заявка">
+              <PropertyRef Name="КодСотрудника" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Оборудование_ТипОборудования">
+          <End Role="ТипОборудования" Type="Self.ТипОборудования" Multiplicity="0..1" />
+          <End Role="Оборудование" Type="Self.Оборудование" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ТипОборудования">
+              <PropertyRef Name="Код" />
+            </Principal>
+            <Dependent Role="Оборудование">
+              <PropertyRef Name="КодТипаОборудования" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Сотрудник_Роль">
+          <End Role="Роль" Type="Self.Роль" Multiplicity="1" />
+          <End Role="Сотрудник" Type="Self.Сотрудник" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Роль">
+              <PropertyRef Name="Код" />
+            </Principal>
+            <Dependent Role="Сотрудник">
+              <PropertyRef Name="РольКод" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище DrillMasterModelContainer">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Заявка" EntityType="Self.Заявка" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Оборудование" EntityType="Self.Оборудование" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Роль" EntityType="Self.Роль" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Сотрудник" EntityType="Self.Сотрудник" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ТипОборудования" EntityType="Self.ТипОборудования" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Заявка_Оборудование" Association="Self.FK_Заявка_Оборудование">
+            <End Role="Оборудование" EntitySet="Оборудование" />
+            <End Role="Заявка" EntitySet="Заявка" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Заявка_Сотрудник" Association="Self.FK_Заявка_Сотрудник">
+            <End Role="Сотрудник" EntitySet="Сотрудник" />
+            <End Role="Заявка" EntitySet="Заявка" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Оборудование_ТипОборудования" Association="Self.FK_Оборудование_ТипОборудования">
+            <End Role="ТипОборудования" EntitySet="ТипОборудования" />
+            <End Role="Оборудование" EntitySet="Оборудование" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Сотрудник_Роль" Association="Self.FK_Сотрудник_Роль">
+            <End Role="Роль" EntitySet="Роль" />
+            <End Role="Сотрудник" EntitySet="Сотрудник" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DrillMasterModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Заявка">
+          <Key>
+            <PropertyRef Name="Код" />
+          </Key>
+          <Property Name="Код" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="КодСотрудника" Type="Int32" Nullable="false" />
+          <Property Name="КодОборудования" Type="Int32" Nullable="false" />
+          <Property Name="ОписаниеПоломки" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Дата" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ДатаДиагностики" Type="DateTime" Precision="3" />
+          <Property Name="ИтогиДиагностики" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ОписаниеРемонта" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ДатаРемонта" Type="DateTime" Precision="3" />
+          <Property Name="ДатаОтчета" Type="DateTime" Precision="3" />
+          <Property Name="Отчет" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Статус" Type="Int32" />
+          <NavigationProperty Name="Оборудование" Relationship="Self.FK_Заявка_Оборудование" FromRole="Заявка" ToRole="Оборудование" />
+          <NavigationProperty Name="Сотрудник" Relationship="DrillMasterModel.FK_Заявка_Сотрудник" FromRole="Заявка" ToRole="Сотрудник" />
+        </EntityType>
+        <EntityType Name="Оборудование">
+          <Key>
+            <PropertyRef Name="Код" />
+          </Key>
+          <Property Name="Код" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="КодТипаОборудования" Type="Int32" />
+          <Property Name="ДатаПриема" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Списан" Type="Boolean" Nullable="false" />
+          <Property Name="Ремонтируется" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Заявка" Relationship="Self.FK_Заявка_Оборудование" FromRole="Оборудование" ToRole="Заявка" />
+          <NavigationProperty Name="ТипОборудования" Relationship="Self.FK_Оборудование_ТипОборудования" FromRole="Оборудование" ToRole="ТипОборудования" />
+        </EntityType>
+        <EntityType Name="Роль">
+          <Key>
+            <PropertyRef Name="Код" />
+          </Key>
+          <Property Name="Код" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Имя" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Сотрудник" Relationship="DrillMasterModel.FK_Сотрудник_Роль" FromRole="Роль" ToRole="Сотрудник" />
+        </EntityType>
+        <EntityType Name="ТипОборудования">
+          <Key>
+            <PropertyRef Name="Код" />
+          </Key>
+          <Property Name="Код" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Имя" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Масса" Type="Double" Nullable="false" />
+          <Property Name="Частота" Type="Int32" Nullable="false" />
+          <Property Name="ЧислоДвигателей" Type="Int32" Nullable="false" />
+          <Property Name="УсловнаяГлубина" Type="Double" Nullable="false" />
+          <NavigationProperty Name="Оборудование" Relationship="Self.FK_Оборудование_ТипОборудования" FromRole="ТипОборудования" ToRole="Оборудование" />
+        </EntityType>
+        <Association Name="FK_Заявка_Оборудование">
+          <End Role="Оборудование" Type="Self.Оборудование" Multiplicity="1" />
+          <End Role="Заявка" Type="Self.Заявка" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Оборудование">
+              <PropertyRef Name="Код" />
+            </Principal>
+            <Dependent Role="Заявка">
+              <PropertyRef Name="КодОборудования" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Оборудование_ТипОборудования">
+          <End Role="ТипОборудования" Type="Self.ТипОборудования" Multiplicity="0..1" />
+          <End Role="Оборудование" Type="Self.Оборудование" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ТипОборудования">
+              <PropertyRef Name="Код" />
+            </Principal>
+            <Dependent Role="Оборудование">
+              <PropertyRef Name="КодТипаОборудования" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DrillMasterEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="Заявка" EntityType="Self.Заявка" />
+          <EntitySet Name="Оборудование" EntityType="Self.Оборудование" />
+          <EntitySet Name="Роль" EntityType="Self.Роль" />
+          <EntitySet Name="ТипОборудования" EntityType="Self.ТипОборудования" />
+          <AssociationSet Name="FK_Заявка_Оборудование" Association="Self.FK_Заявка_Оборудование">
+            <End Role="Оборудование" EntitySet="Оборудование" />
+            <End Role="Заявка" EntitySet="Заявка" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Оборудование_ТипОборудования" Association="Self.FK_Оборудование_ТипОборудования">
+            <End Role="ТипОборудования" EntitySet="ТипОборудования" />
+            <End Role="Оборудование" EntitySet="Оборудование" />
+          </AssociationSet>
+          <EntitySet Name="Сотрудник" EntityType="DrillMasterModel.Сотрудник" />
+          <AssociationSet Name="FK_Заявка_Сотрудник" Association="DrillMasterModel.FK_Заявка_Сотрудник">
+            <End Role="Сотрудник" EntitySet="Сотрудник" />
+            <End Role="Заявка" EntitySet="Заявка" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Сотрудник_Роль" Association="DrillMasterModel.FK_Сотрудник_Роль">
+            <End Role="Роль" EntitySet="Роль" />
+            <End Role="Сотрудник" EntitySet="Сотрудник" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Сотрудник">
+          <Key>
+            <PropertyRef Name="Код" />
+          </Key>
+          <Property Name="Код" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="РольКод" Type="Int32" Nullable="false" />
+          <Property Name="Фио" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Логин" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Пароль" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Адрес" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ДатаРождения" Type="DateTime" Precision="3" />
+          <Property Name="Уволен" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Заявка" Relationship="DrillMasterModel.FK_Заявка_Сотрудник" FromRole="Сотрудник" ToRole="Заявка" />
+          <NavigationProperty Name="Роль" Relationship="DrillMasterModel.FK_Сотрудник_Роль" FromRole="Сотрудник" ToRole="Роль" />
+        </EntityType>
+        <Association Name="FK_Заявка_Сотрудник">
+          <End Type="DrillMasterModel.Сотрудник" Role="Сотрудник" Multiplicity="1" />
+          <End Type="DrillMasterModel.Заявка" Role="Заявка" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Сотрудник">
+              <PropertyRef Name="Код" />
+            </Principal>
+            <Dependent Role="Заявка">
+              <PropertyRef Name="КодСотрудника" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Сотрудник_Роль">
+          <End Type="DrillMasterModel.Роль" Role="Роль" Multiplicity="1" />
+          <End Type="DrillMasterModel.Сотрудник" Role="Сотрудник" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Роль">
+              <PropertyRef Name="Код" />
+            </Principal>
+            <Dependent Role="Сотрудник">
+              <PropertyRef Name="РольКод" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище DrillMasterModelContainer" CdmEntityContainer="DrillMasterEntities">
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="DrillMasterModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Заявка">
+            <EntityTypeMapping TypeName="DrillMasterModel.Заявка">
+              <MappingFragment StoreEntitySet="Заявка">
+                <ScalarProperty Name="Код" ColumnName="Код" />
+                <ScalarProperty Name="КодСотрудника" ColumnName="КодСотрудника" />
+                <ScalarProperty Name="КодОборудования" ColumnName="КодОборудования" />
+                <ScalarProperty Name="ОписаниеПоломки" ColumnName="ОписаниеПоломки" />
+                <ScalarProperty Name="Дата" ColumnName="Дата" />
+                <ScalarProperty Name="ДатаДиагностики" ColumnName="ДатаДиагностики" />
+                <ScalarProperty Name="ИтогиДиагностики" ColumnName="ИтогиДиагностики" />
+                <ScalarProperty Name="ОписаниеРемонта" ColumnName="ОписаниеРемонта" />
+                <ScalarProperty Name="ДатаРемонта" ColumnName="ДатаРемонта" />
+                <ScalarProperty Name="ДатаОтчета" ColumnName="ДатаОтчета" />
+                <ScalarProperty Name="Отчет" ColumnName="Отчет" />
+                <ScalarProperty Name="Статус" ColumnName="Статус" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Оборудование">
+            <EntityTypeMapping TypeName="DrillMasterModel.Оборудование">
+              <MappingFragment StoreEntitySet="Оборудование">
+                <ScalarProperty Name="Код" ColumnName="Код" />
+                <ScalarProperty Name="КодТипаОборудования" ColumnName="КодТипаОборудования" />
+                <ScalarProperty Name="ДатаПриема" ColumnName="ДатаПриема" />
+                <ScalarProperty Name="Списан" ColumnName="Списан" />
+                <ScalarProperty Name="Ремонтируется" ColumnName="Ремонтируется" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Роль">
+            <EntityTypeMapping TypeName="DrillMasterModel.Роль">
+              <MappingFragment StoreEntitySet="Роль">
+                <ScalarProperty Name="Код" ColumnName="Код" />
+                <ScalarProperty Name="Имя" ColumnName="Имя" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ТипОборудования">
+            <EntityTypeMapping TypeName="DrillMasterModel.ТипОборудования">
+              <MappingFragment StoreEntitySet="ТипОборудования">
+                <ScalarProperty Name="Код" ColumnName="Код" />
+                <ScalarProperty Name="Имя" ColumnName="Имя" />
+                <ScalarProperty Name="Масса" ColumnName="Масса" />
+                <ScalarProperty Name="Частота" ColumnName="Частота" />
+                <ScalarProperty Name="ЧислоДвигателей" ColumnName="ЧислоДвигателей" />
+                <ScalarProperty Name="УсловнаяГлубина" ColumnName="УсловнаяГлубина" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Сотрудник">
+            <EntityTypeMapping TypeName="DrillMasterModel.Сотрудник">
+              <MappingFragment StoreEntitySet="Сотрудник">
+                <ScalarProperty Name="Уволен" ColumnName="Уволен" />
+                <ScalarProperty Name="ДатаРождения" ColumnName="ДатаРождения" />
+                <ScalarProperty Name="Адрес" ColumnName="Адрес" />
+                <ScalarProperty Name="Пароль" ColumnName="Пароль" />
+                <ScalarProperty Name="Логин" ColumnName="Логин" />
+                <ScalarProperty Name="Фио" ColumnName="Фио" />
+                <ScalarProperty Name="РольКод" ColumnName="РольКод" />
+                <ScalarProperty Name="Код" ColumnName="Код" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

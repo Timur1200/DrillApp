@@ -1,0 +1,24 @@
+﻿<Page x:Class="DrillApp.View.Pages.Order.OrderAddEditPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:DrillApp.View.Pages.Order"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="OrderAddEditPage">
+
+    <Grid>
+        <StackPanel HorizontalAlignment="Center" Width="400" VerticalAlignment="Center">
+            <TextBlock Text="Оборудование" />
+            <ComboBox Name="EquipCBox" DisplayMemberPath="name" IsTextSearchEnabled="False" IsEditable="True" SelectedItem="{Binding Оборудование}"
+                      TextBoxBase.TextChanged="EquipCBox_TextChanged" />
+            <TextBlock Text="Описание поломки" />
+            <TextBox Height="auto"  Text="{Binding ОписаниеПоломки}" AcceptsReturn="True" />
+           
+
+            <Button Click="SaveClick" Content="Сохранить" />
+
+        </StackPanel>
+    </Grid>
+</Page>

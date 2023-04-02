@@ -1,0 +1,29 @@
+﻿<Page x:Class="DrillApp.View.Pages.Equipment.EquipmentAddEditPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:DrillApp.View.Pages.Equipment"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="EquipmentAddEditPage">
+
+    <Grid>
+        <StackPanel HorizontalAlignment="Center" Width="400" VerticalAlignment="Center">
+            <TextBlock Text="Идентификационный номер" />
+            <TextBox Text="{Binding Код}" IsReadOnly="True" />
+            <TextBlock Text="Тип оборудования" />
+            <ComboBox Name="TypeComboBox" DisplayMemberPath="Имя" IsTextSearchEnabled="False" IsEditable="True" SelectedItem="{Binding ТипОборудования}"
+                      TextBoxBase.TextChanged="ClientComboBox_TextChanged"
+                      />
+            <TextBlock Text="Дата приема" />
+            <DatePicker SelectedDate="{Binding ДатаПриема}" />
+            <!--<CheckBox IsChecked="{Binding Списан}" Content="Списан" />
+            <CheckBox IsChecked="{Binding Ремонтируется}" Content="Ремонтируется" />-->
+
+
+            <Button Click="SaveClick" Content="Сохранить" />
+
+        </StackPanel>
+    </Grid>
+</Page>
