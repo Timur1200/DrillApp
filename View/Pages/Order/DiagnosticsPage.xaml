@@ -10,22 +10,24 @@
       Title="DiagnosticsPage">
 
     <Grid>
-        <StackPanel Name="Panel" HorizontalAlignment="Center" Width="400" VerticalAlignment="Top">
-            <TextBlock Text="{Binding Код,StringFormat=Заявка №{0}}" />
-            <TextBlock  Text="Описание поломки" />
-            <TextBox IsReadOnly="True" Height="auto" Text="{Binding ОписаниеПоломки}" />
-            <TextBlock Text="{Binding Оборудование.name,StringFormat=Оборудование: {0}}" />
-            <StackPanel Orientation="Horizontal">
-                <RadioButton Name="rBtnRepair" Content="Ремонт" />
-                <RadioButton Name="rBtnBroken" Content="Списание" />
+        <ScrollViewer>
+            <StackPanel Name="Panel" HorizontalAlignment="Center" Width="400" VerticalAlignment="Top">
+                <TextBlock Text="{Binding Код,StringFormat=Заявка №{0}}" />
+                <TextBlock  Text="Описание поломки" />
+                <TextBox IsReadOnly="True" Height="auto" Text="{Binding ОписаниеПоломки}" />
+                <TextBlock Text="{Binding Оборудование.name,StringFormat=Оборудование: {0}}" />
+                <StackPanel Orientation="Horizontal">
+                    <RadioButton Name="rBtnRepair" Content="Ремонт" />
+                    <RadioButton Name="rBtnBroken" Content="Списание" />
+                </StackPanel>
+
+                <TextBlock Text="Описание диагностики/ремонта" />
+                <TextBox AcceptsReturn="True" Height="auto" Text="{Binding ОписаниеРемонта}" />
+
+
+                <Button Click="SaveClick" Content="Сохранить" />
+
             </StackPanel>
-           
-            <TextBlock Text="Описание" />
-            <TextBox AcceptsReturn="True" Height="auto" Text="{Binding ОписаниеРемонта}" />
-           
-
-            <Button Click="SaveClick" Content="Сохранить" />
-
-        </StackPanel>
+        </ScrollViewer>
     </Grid>
 </Page>

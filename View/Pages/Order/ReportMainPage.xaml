@@ -9,7 +9,8 @@
       Title="ReportMainPage">
 
     <Grid>
-        <StackPanel Name="Panel" HorizontalAlignment="Center" Width="400" VerticalAlignment="Top">
+        <ScrollViewer>
+            <StackPanel Name="Panel" HorizontalAlignment="Center" Width="400" VerticalAlignment="Top">
             <TextBlock Text="{Binding Код,StringFormat=Заявка №{0}}" />
             <TextBlock  Text="Описание поломки" />
             <TextBox IsReadOnly="True" Height="auto" Text="{Binding ОписаниеПоломки}" />
@@ -25,5 +26,6 @@
             <Button Click="SaveClick" Content="Сохранить" />
 
         </StackPanel>
+            </ScrollViewer>
     </Grid>
 </Page>

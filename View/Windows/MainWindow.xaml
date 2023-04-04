@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DrillApp"
         mc:Ignorable="d"
+        Icon="../../Resources/icon.ico"
         Title="" Height="600" Width="900">
     <Grid>
         <Grid.RowDefinitions>
