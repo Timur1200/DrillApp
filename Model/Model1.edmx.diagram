@@ -5,7 +5,7 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="67896d30762c4e3e8be9994e5f376116" Name="Diagram1">
-        <EntityTypeShape EntityType="DrillMasterModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DrillMasterModel.sysdiagrams" Width="1.5" PointX="14" PointY="5.125" IsExpanded="true" />
         <EntityTypeShape EntityType="DrillMasterModel.Заявка" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="DrillMasterModel.Оборудование" Width="1.5" PointX="3" PointY="5.625" IsExpanded="true" />
         <EntityTypeShape EntityType="DrillMasterModel.Роль" Width="1.5" PointX="0.75" PointY="2.125" IsExpanded="true" />

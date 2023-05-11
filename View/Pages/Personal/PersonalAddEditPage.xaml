@@ -9,6 +9,7 @@
       Title="PersonalAddEditPage">
 
     <Grid>
+	 <ScrollViewer>
         <StackPanel HorizontalAlignment="Center" Width="400" VerticalAlignment="Center">
             <TextBlock Text="ФИО" />
             <TextBox Text="{Binding Фио}" />
@@ -24,5 +25,6 @@
             <Button Click="SaveClick" Content="Сохранить" />
 
         </StackPanel>
+	 </ScrollViewer>
     </Grid>
 </Page>
