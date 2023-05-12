@@ -31,7 +31,7 @@
                     <DataGridTemplateColumn>
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Button Content="Подробнее" Click="NextClick" />
+                                <Button Width="auto" Height="auto" Content="Подробнее" Click="NextClick" />
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>

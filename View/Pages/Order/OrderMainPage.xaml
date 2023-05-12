@@ -31,7 +31,7 @@
                     <DataGridTemplateColumn>
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Button Content="Отчет" Click="ReportClick" />
+                                <Button Width="auto" Height="auto" Content="Отчет" Click="ReportClick" />
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>

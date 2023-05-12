@@ -7,6 +7,142 @@
         mc:Ignorable="d"
         Icon="../../Resources/icon.ico"
         Title="" Height="600" Width="900">
+    <Grid Background="#23262B">
+
+        <TextBlock Text="D E S I G N   T H E   I N T E R F A C E"
+                   Foreground="#525965"
+                   FontFamily="Fonts/#Orbitron Medium"
+                   FontSize="10"
+                   VerticalAlignment="Bottom"
+                   HorizontalAlignment="Right"
+                   Margin="0,0,15,10" />
+
+        <Border Background="#D61734"
+                Height="15"
+                CornerRadius="3,0,0,3"
+                Width="5"
+                VerticalAlignment="Bottom"
+                HorizontalAlignment="Right"
+                Margin="0,0,0,8" />
+
+        <!--// Menu Panel //-->
+
+        <StackPanel Background="#2E333A"
+                    Width="230"
+                    Orientation="Vertical"
+                    HorizontalAlignment="Left">
+
+            <!--// Channel Name //-->
+
+            <Grid Height="50"
+                  VerticalAlignment="Top"
+                  Margin="0,30,0,0">
+
+                <Border Background="#D61734"
+                        Height="25"
+                        CornerRadius="3,0,0,3"
+                        Width="6"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Right" />
+
+                <TextBlock Name="TextBlockFio" Text="1"
+                           Foreground="#FFFFFF"
+                           FontFamily="Fonts/#Orbitron Medium"
+                           FontSize="15"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Center" />
+
+            </Grid>
+
+            <!--// Main Menu //-->
+
+            <Menu Height="450"
+                  Background="Transparent"
+                  Margin="0,40,0,0">
+
+                <Menu.ItemsPanel>
+
+                    <ItemsPanelTemplate>
+
+                        <VirtualizingStackPanel Orientation="Vertical" />
+
+                    </ItemsPanelTemplate>
+
+                </Menu.ItemsPanel>
+
+                <!--// Main Menu - Home //-->
+                <StackPanel Name="MasterPanel">
+                    <MenuItem Click="NewOrdersClick" Header="Заявка"
+                          Template="{StaticResource Menu_Template}">
+                        <MenuItem.Icon>
+                            <Image Source="../../Assets/img_history.png"
+                               Stretch="None" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                </StackPanel>
+                <StackPanel  Name="AdminPanel">
+                    <MenuItem Header="Персонал" Click="PersonalClick"
+                          Template="{StaticResource Menu_Template}">
+                        <MenuItem.Icon>
+                            <Image Source="../../Assets/img_artist.png"
+                               Stretch="None" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem Header="Оборудование" Click="EquipmentClick"
+                          Template="{StaticResource Menu_Template}">
+                        <MenuItem.Icon>
+                            <Image Source="../../Assets/max_mo.png"
+                               Stretch="None" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem Header="Заявки" Click="OrdersClick"
+                          Template="{StaticResource Menu_Template}">
+                        <MenuItem.Icon>
+                            <Image Source="../../Assets/img_history.png"
+                               Stretch="None" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                </StackPanel>
+                <MenuItem Click="BackClick" Header="Назад"
+                          Template="{StaticResource Menu_Template}">
+
+                    <MenuItem.Icon>
+
+                        <Image Source="../../Assets/back.png"
+                               Stretch="None" />
+
+                    </MenuItem.Icon>
+
+                </MenuItem>
+
+               
+
+                <MenuItem Click="LeaveClick" Header="Выйти"
+                          Template="{StaticResource Menu_Template}">
+
+                    <MenuItem.Icon>
+
+                        <Image Source="../../Assets/img_exit.png"
+                               Stretch="None" />
+
+                    </MenuItem.Icon>
+
+                </MenuItem>
+
+            </Menu>
+
+        </StackPanel>
+
+        <!--// Maximize / Minimize App //-->
+
+        <Frame NavigationUIVisibility="Hidden" Name="MainFrame" Margin="235,0,0,0"></Frame>
+
+        <!--// Close App //-->
+
+        
+
+    </Grid>
+    <!--
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="0.22*"></RowDefinition>
@@ -26,7 +162,7 @@
                 <ColumnDefinition Width="0.25*"></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <!-- Кнопки для навигации -->
+            
             <Grid>
 
                 <StackPanel Name="MasterPanel">
@@ -52,4 +188,5 @@
 
         </Grid>
     </Grid>
+    -->
 </Window>

@@ -6,25 +6,25 @@
         xmlns:local="clr-namespace:DrillApp.View.Windows"
         mc:Ignorable="d"
         Icon="../../Resources/icon.ico"
-        Title="" ResizeMode="NoResize" Height="450" Width="500">
+        Title="" ResizeMode="NoResize" Height="500" Width="600">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="0.12*"></RowDefinition>
+            
             <RowDefinition></RowDefinition>
-            <RowDefinition  Height="0.20*"></RowDefinition>
+            
         </Grid.RowDefinitions>
 
-        <Grid Background="#EC9704"></Grid>
-        <Grid Grid.Row="1" >
-            <StackPanel Margin="25,0">
-                <TextBlock Foreground="#9C4A1A" Text="Авторизация" FontSize="26" HorizontalAlignment="Center" Margin="0,30" />
+
+        <Grid Background="#2E333A" Grid.Row="1" >
+            <StackPanel VerticalAlignment="Center" Margin="25,0">
+                
                 <TextBlock HorizontalAlignment="Center" Text="Логин" />
                 <TextBox Name="LoginTBox" />
                 <TextBlock HorizontalAlignment="Center" Text="Пароль" />
                 <PasswordBox Height="30" x:Name="PassBox" />
-                <Button Click="LoginClick" Content="Войти" />
+                <Button  Click="LoginClick" Content="Войти" />
             </StackPanel>
         </Grid>
-        <Grid Background="#A78B71" Grid.Row="2" ></Grid>
+       
     </Grid>
 </Window>
