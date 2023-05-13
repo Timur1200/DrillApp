@@ -27,7 +27,7 @@ namespace DrillApp.Model
         public string Отчет { get; set; }
         public Nullable<int> Статус { get; set; }
     
-        public virtual Оборудование Оборудование { get; set; }
         public virtual Сотрудник Сотрудник { get; set; }
+        public virtual Оборудование Оборудование { get; set; }
     }
 }

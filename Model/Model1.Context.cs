@@ -27,9 +27,9 @@ namespace DrillApp.Model
     
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<Заявка> Заявка { get; set; }
-        public virtual DbSet<Оборудование> Оборудование { get; set; }
         public virtual DbSet<Роль> Роль { get; set; }
-        public virtual DbSet<ТипОборудования> ТипОборудования { get; set; }
         public virtual DbSet<Сотрудник> Сотрудник { get; set; }
+        public virtual DbSet<Оборудование> Оборудование { get; set; }
+        public virtual DbSet<ТипОборудования> ТипОборудования { get; set; }
     }
 }

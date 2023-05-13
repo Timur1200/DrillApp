@@ -7,15 +7,15 @@
       <Diagram DiagramId="67896d30762c4e3e8be9994e5f376116" Name="Diagram1">
         <EntityTypeShape EntityType="DrillMasterModel.sysdiagrams" Width="1.5" PointX="14" PointY="5.125" IsExpanded="true" />
         <EntityTypeShape EntityType="DrillMasterModel.Заявка" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="DrillMasterModel.Оборудование" Width="1.5" PointX="3" PointY="5.625" IsExpanded="true" />
         <EntityTypeShape EntityType="DrillMasterModel.Роль" Width="1.5" PointX="0.75" PointY="2.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="DrillMasterModel.ТипОборудования" Width="1.5" PointX="0.75" PointY="5.625" IsExpanded="true" />
-        <AssociationConnector Association="DrillMasterModel.FK_Заявка_Оборудование" ManuallyRouted="false" />
-        <AssociationConnector Association="DrillMasterModel.FK_Оборудование_ТипОборудования" ManuallyRouted="false" />
         <EntityTypeShape EntityType="DrillMasterModel.Сотрудник" Width="1.5" PointX="3" PointY="1.5" />
         <AssociationConnector Association="DrillMasterModel.FK_Заявка_Сотрудник" />
         <AssociationConnector Association="DrillMasterModel.FK_Сотрудник_Роль" />
-      </Diagram>
+        <EntityTypeShape EntityType="DrillMasterModel.Оборудование" Width="1.5" PointX="3" PointY="6" />
+        <EntityTypeShape EntityType="DrillMasterModel.ТипОборудования" Width="1.5" PointX="0.75" PointY="6" />
+        <AssociationConnector Association="DrillMasterModel.FK_Заявка_Оборудование" />
+        <AssociationConnector Association="DrillMasterModel.FK_Оборудование_ТипОборудования" />
+        </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>
