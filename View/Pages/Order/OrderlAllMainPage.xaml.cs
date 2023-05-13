@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Word = Microsoft.Office.Interop.Word;
 
 namespace DrillApp.View.Pages.Order
 {
@@ -34,6 +35,11 @@ namespace DrillApp.View.Pages.Order
         private void NextClick(object sender, RoutedEventArgs e)
         {
             Nav.frame.Navigate(new DiagnosticsPage(DGrid.SelectedItem as Заявка));
+        }
+
+        private void WordClick(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

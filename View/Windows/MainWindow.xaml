@@ -9,7 +9,7 @@
         Title="" Height="600" Width="900">
     <Grid Background="#23262B">
 
-        <TextBlock Text="D E S I G N   T H E   I N T E R F A C E"
+        <TextBlock Text=""
                    Foreground="#525965"
                    FontFamily="Fonts/#Orbitron Medium"
                    FontSize="10"
