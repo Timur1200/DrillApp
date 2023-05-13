@@ -39,7 +39,7 @@ namespace DrillApp
                 MasterPanel.Visibility = Visibility.Collapsed;
                 AdminPanel.Visibility = Visibility.Visible;
             }
-            TextBlockFio.Text = Session.user.Фио;
+            TextBlockFio.Text = $"{Session.user.Роль.Имя} {Session.user.Фио}";
             
         }
         private void Go(Page p)
