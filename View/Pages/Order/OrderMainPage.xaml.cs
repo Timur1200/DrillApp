@@ -34,12 +34,38 @@ namespace DrillApp.View.Pages.Order
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            DGrid.ItemsSource = DrillMasterEntities.GetContext().Заявка.Where(q=>q.КодСотрудника==Session.user.Код).ToList();
+            _list = DrillMasterEntities.GetContext().Заявка.Where(q=>q.КодСотрудника==Session.user.Код).ToList();
+            DGrid.ItemsSource = _list;
         }
-
+        List<Заявка> _list;
         private void ReportClick(object sender, RoutedEventArgs e)
         {
             Nav.frame.Navigate(new ReportMainPage(DGrid.SelectedItem as Заявка));
+        }
+
+        private void TypeComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            try
+            {
+                string text = SearhTextBox.Text.ToLower();
+                if (string.IsNullOrEmpty(text))
+                {
+                    DGrid.ItemsSource = _list;
+                    return;
+                }
+                
+                    DGrid.ItemsSource = _list.Where(q => q.Оборудование.name.ToLower().Contains(text)).ToList();
+                
+            }
+            catch
+            {
+
+            }
+        }
+
+        private void SearchTextChanged(object sender, TextChangedEventArgs e)
+        {
+            SearchTextChanged(null, null);
         }
     }
 }

@@ -53,7 +53,28 @@ namespace DrillApp.View.Pages.Equipment
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            DGrid.ItemsSource = DrillMasterEntities.GetContext().Оборудование.ToList();
+            _list = DrillMasterEntities.GetContext().Оборудование.ToList();
+            DGrid.ItemsSource = _list;
+        }
+        List<Оборудование> _list;
+        private void SearchTextChanged(object sender, TextChangedEventArgs e)
+        {
+            try
+            {
+                string text = SearhTextBox.Text.ToLower();
+                if (string.IsNullOrEmpty(text))
+                {
+                    DGrid.ItemsSource = _list;
+                    return;
+                }
+
+                DGrid.ItemsSource = _list.Where(q => q.name.ToLower().Contains(text) || q.Код.ToString().Contains(text)).ToList();
+
+            }
+            catch
+            {
+
+            }
         }
     }
 }

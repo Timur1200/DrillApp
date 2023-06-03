@@ -17,6 +17,10 @@
         <Grid>
             <StackPanel Orientation="Horizontal">
                 <Button Click="AddClick" Content="Создать" />
+                <StackPanel VerticalAlignment="Center">
+                    <TextBlock Text="Поиск:" />
+                    <TextBox Name="SearhTextBox" TextChanged="SearchTextChanged" Width="120" />
+                </StackPanel>
                 
 
             </StackPanel>

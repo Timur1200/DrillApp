@@ -20,7 +20,10 @@
                 <Button Click="EditClick" Content="Изменить" />
                 
                 <Button Width="auto" Click="TypeClick" Content="Тип оборудования"  />
-
+                <StackPanel VerticalAlignment="Center">
+                    <TextBlock Text="Поиск:" />
+                    <TextBox Name="SearhTextBox" TextChanged="SearchTextChanged" Width="120" />
+                </StackPanel>
             </StackPanel>
         </Grid>
         <Grid Grid.Row="1">

@@ -18,7 +18,14 @@
                 <Button Click="AddClick" Content="Создать" />
                 <Button Click="EditClick" Content="Изменить" />
                 <Button Width="auto" Click="DelClick" Content="Уволить/Вернуть"  />
-               
+                <StackPanel VerticalAlignment="Center">
+                    <TextBlock Text="Поиск:" />
+                    <TextBox Name="SearhTextBox" TextChanged="SearchTextChanged" Width="120" />
+                </StackPanel>
+                <StackPanel VerticalAlignment="Center">
+                    <TextBlock Text="Критерий поиска:" />
+                    <ComboBox SelectionChanged="TypeComboBox_SelectionChanged" Name="TypeComboBox" Width="120" />
+                </StackPanel>
             </StackPanel>
         </Grid>
         <Grid Grid.Row="1">

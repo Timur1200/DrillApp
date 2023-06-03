@@ -6,9 +6,9 @@
         xmlns:local="clr-namespace:DrillApp"
         mc:Ignorable="d"
         Icon="../../Resources/icon.ico"
-        Title="" Height="600" Width="900">
+        Title="" Height="600" Width="1050">
     <Grid Background="#23262B">
-
+        
         <TextBlock Text=""
                    Foreground="#525965"
                    FontFamily="Fonts/#Orbitron Medium"
@@ -123,6 +123,19 @@
                     <MenuItem.Icon>
 
                         <Image Source="../../Assets/img_exit.png"
+                               Stretch="None" />
+
+                    </MenuItem.Icon>
+
+                </MenuItem>
+
+
+                <MenuItem Click="RefClick" Header="Справка"
+                          Template="{StaticResource Menu_Template}">
+
+                    <MenuItem.Icon>
+
+                        <Image Source="../../Assets/icon.png"
                                Stretch="None" />
 
                     </MenuItem.Icon>

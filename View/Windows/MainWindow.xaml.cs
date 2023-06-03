@@ -17,6 +17,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using DrillApp.View.Pages.Equipment;
 using DrillApp.View.Pages.Order;
+using System.Diagnostics;
 
 namespace DrillApp
 {
@@ -77,6 +78,11 @@ namespace DrillApp
         private void OrdersClick(object sender, RoutedEventArgs e)
         {
             Go(new OrderlAllMainPage());
+        }
+
+        private void RefClick(object sender, RoutedEventArgs e)
+        {
+            Process.Start(System.IO.Path.GetFullPath(@"help.chm"));
         }
     }
 }

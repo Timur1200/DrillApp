@@ -29,9 +29,10 @@ namespace DrillApp.View.Pages.Order
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            DGrid.ItemsSource = DrillMasterEntities.GetContext().Заявка.ToList();
+           _list = DrillMasterEntities.GetContext().Заявка.ToList();
+            DGrid.ItemsSource = _list;
         }
-
+        List<Заявка> _list;
         private void NextClick(object sender, RoutedEventArgs e)
         {
             Nav.frame.Navigate(new DiagnosticsPage(DGrid.SelectedItem as Заявка));
@@ -40,6 +41,26 @@ namespace DrillApp.View.Pages.Order
         private void WordClick(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void SearchTextChanged(object sender, TextChangedEventArgs e)
+        {
+            try
+            {
+                string text = SearhTextBox.Text.ToLower();
+                if (string.IsNullOrEmpty(text))
+                {
+                    DGrid.ItemsSource = _list;
+                    return;
+                }
+
+                DGrid.ItemsSource = _list.Where(q => q.Оборудование.name.ToLower().Contains(text) || q.Код.ToString().Contains(text)).ToList();
+
+            }
+            catch
+            {
+
+            }
         }
     }
 }
